@@ -1,5 +1,6 @@
 package sourabhCods.whatsappsender.services;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -11,8 +12,11 @@ import java.util.Map;
 @Service
 public class WhatsappService {
 
-    private final String API_URL = "https://gate.whapi.cloud/messages/text";
-    private final String API_TOKEN = "pUcP81jHIBbjis2oshIBhdUgcmTMRiye";
+    @Value("${whapi.url}")
+    private String API_URL;
+
+    @Value("${whapi.token}")
+    private String API_TOKEN;
 
     public String sendWhatsAppMessage(UserDTO userDto) {
         RestTemplate restTemplate = new RestTemplate();
